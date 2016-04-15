@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
 
+  var text;
+
 	$('#start_button').click(function(){
 		window.location = "chat.html";
 	});
@@ -12,6 +14,29 @@ jQuery(document).ready(function($){
    			alert("topkek");
    		}
 	});*/
+  function memes(){
+    alert('memes');
+  }
+
+  function enterName(){
+    swal({  title: "An input!",   
+            text: "Write something interesting:",   
+            type: "input",   
+            showCancelButton: true,   
+            closeOnConfirm: false,   
+            animation: "slide-from-top",   
+            inputPlaceholder: "Write something" }, 
+        function(inputValue){   
+          if (inputValue === false) 
+            return false;      
+          if (inputValue === ""){
+            swal.showInputError("You need to write something!");     
+            return false   
+          }      
+          text = inputValue; 
+        }
+    );
+  }
 
 	$('#messageHolder').bind('scroll', function(){
 		if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
@@ -38,7 +63,7 @@ jQuery(document).ready(function($){
     $('#messageInput').keypress(function (e) {
       if (e.keyCode == 13) {
         var name = $('#nameInput').val();
-        var text = $('#messageInput').val();
+        /*var text = $('#messageInput').val();*/
         myDataRef.push({name: name, text: text});
         $('#messageInput').val('');
       }
