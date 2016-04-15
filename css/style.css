@@ -1,0 +1,195 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+
+*{
+    margin:0px;
+    padding:0px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+::selection {
+  background: #ffb7b7;
+  color:#FFF
+}
+::-moz-selection {
+  background: #ffb7b7;
+  color:#FFF;
+}
+
+body{
+  width:100%;
+  background-color:#2B7ACC;
+}
+
+#title{
+  font-family:'Roboto', sans-serif;
+  font-size:5vw;
+  font-weight:300;
+  color:#FFFFFF;
+  padding-top:15%;
+  -webkit-animation-delay: 0.65s;
+  animation-delay: 0.5s;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+}
+
+.center{
+  margin: 0 auto;
+  padding-left: 25%;
+  padding-right:25%;
+}
+
+#start_button{
+	position:relative;
+  margin-top:5%;
+  font-family: "Roboto", sans-serif;
+	font-size:2vw;
+  font-weight:300;
+  width:10%;
+  height: 15%;
+  border: white 2px solid;
+  color:white;
+  background-color:rgba(255, 255, 255, 0);
+  -webkit-transition: background .4s, border .5s, color .3s;
+  -moz-transition: background .4s, border .5s, color .3s;
+  transition: background .4s, border .5s, color .3s;
+  border-radius:4px;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+#start_button:hover{
+  background:white;
+  border: #FFFFFF solid 2px;
+  color:#2B7ACC;
+  cursor: hand;
+  cursor: pointer;
+}
+
+#aboot{
+  position:relative;
+  font-size:2vw;
+  font-family: "Roboto", sans-serif;
+  font-weight:300;
+  width:10%;
+  height: 15%;
+  border: white 2px solid;
+  color:white;
+  background-color:rgba(255, 255, 255, 0);
+  -webkit-transition: background .4s, border .5s, color .3s;
+  -moz-transition: background .4s, border .5s, color .3s;
+  transition: background .4s, border .5s, color .3s;
+  border-radius:4px;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+#aboot:hover{
+  background:white;
+  border: #FFFFFF solid 2px;
+  color:#2B7ACC;
+  cursor: hand;
+  cursor: pointer;
+}
+
+#version{
+  position: absolute;
+  bottom:5px;
+  right:5px;
+  font-weight:300;
+  font-style: italic;
+  font-size:0.8vw;
+  font-family: "Roboto", sans-serif;
+  color:white;
+}
+
+#messageContainer{
+  margin-top:5%;
+  height: 31.25em;
+  position:relative;
+  border:5px solid #F1F1F1;
+  border-radius:15px;
+  /*width:50%;*/
+}
+
+#messageHolder{
+  max-height:100%;
+  overflow:auto;
+  border-radius:15px;
+}
+
+#messages{
+  position:relative;
+  color:white;
+}
+
+#messages div{
+  all: default;
+  height:5%;
+  font-family: "Roboto", sans-serif;
+  font-weight:300;
+}
+
+#messageHolder::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+#messageHolder::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 15px;
+}
+ 
+.thumbMiddle::-webkit-scrollbar-thumb {
+  background-color: #F1F1F1;
+  /*outline: 1px solid slategrey;*/
+  border-radius: 15px;
+}
+
+.thumbTop::-webkit-scrollbar-thumb {
+  background-color: #F1F1F1;
+  /*outline: 1px solid slategrey;*/
+  border-top-left-radius: 0px;
+  border-top-right-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
+  border-bottom-left-radius: 7.5px;
+}
+
+.thumbBottom::-webkit-scrollbar-thumb {
+  background-color: #F1F1F1;
+  /*outline: 1px solid slategrey;*/
+  border-top-left-radius: 7.5px;
+  border-top-right-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
+  border-bottom-left-radius: 0px;
+}
+
+input{
+  background-color: rgba(255, 255, 255, 0);
+  border: white 2px solid;
+  border-radius:5px;
+  color:white;
+  font-family: "Roboto", sans-serif;
+  font-weight:300;
+  font-size:2vw;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+#nameInput{
+    width:30%;
+}
+
+#messageInput{
+    width:58%;
+}
+
+#inputContainer{
+  padding-top: 1em;
+}
