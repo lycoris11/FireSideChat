@@ -4,6 +4,8 @@ jQuery(document).ready(function($){
   var llamo;
   var rooms = [];
   var currentChat;
+  var kidPath;
+  var kidReference;
 
 	$('#start_button').click(function(){
 		window.location = "chat.html";
@@ -71,8 +73,10 @@ jQuery(document).ready(function($){
 
     if($('#chatInput').val().length >= 4 && isCreatable == true){
       $('<option/>').text($('#chatInput').val()).appendTo($('#existingChats'));
+      rooms.push($('#chatInput').val());
       swal("Success!", "You've opened a new chat!", "success");
-      myDataRef.push(rooms[rooms.length - 1]);
+      var mostRecentChat = rooms[rooms.length - 1]
+      /*myDataRef.push(mostRecentChat);*/
       /*rooms.push($('#chatInput').val());*/
     }else if (isCreatable == false){
       swal("Oh no!", "Please come up with a unique name for your chat.", "error");
@@ -81,24 +85,28 @@ jQuery(document).ready(function($){
     }
   });
 
-  $('#existingChats').change(function(){
+  /*$('#existingChats').change(function(){
     currentChat = $(this).val();
-  });
+  });*/
 
   $('#messageInput').keypress(function (e) {
     if (e.keyCode == 13) {
+      currentChat = $('#existingChats').find(":selected").text();
       /*var name = $('#nameInput').val();*/
       var text = $('#messageInput').val();
       /*myDataRef.push({name: llamo, text: text});*/
-      currentChat.push({name: llamo, text: text});
+      myDataRef.child(currentChat).push({name: llamo, text: text});
+      kidPath = myDataRef.child(currentChat).toString();
+      kidReference = new Firebase(kidPath)
       $('#messageInput').val('');
+      alert(currentChat);
     }
   });
 
-  myDataRef.on('child_added', function(snapshot) {
+  /*myDataRef.child(currentChat).on('child_added', function(snapshot) {
     var message = snapshot.val();
       displayChatMessage(message.name, message.text);
-  });
+  });*/
 
   function displayChatMessage(name, text) {
     if(name == llamo){
