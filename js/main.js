@@ -3,9 +3,10 @@ jQuery(document).ready(function($){
   var myDataRef = new Firebase('https://fireside-chat.firebaseio.com/');
   var llamo;
   var rooms = [];
-  var currentChat;
-  var kidPath;
+  var currentChat = "Global";
+  /*var kidPath;
   var kidReference;
+  var un = myDataRef.child(currentChat)*/
 
 	$('#start_button').click(function(){
 		window.location = "chat.html";
@@ -85,9 +86,10 @@ jQuery(document).ready(function($){
     }
   });
 
-  /*$('#existingChats').change(function(){
-    currentChat = $(this).val();
-  });*/
+  $('#existingChats').change(function(){
+    currentChat = $('#existingChats').find(":selected").text();
+    /*alert(currentChat)*/
+  });
 
   $('#messageInput').keypress(function (e) {
     if (e.keyCode == 13) {
@@ -95,18 +97,21 @@ jQuery(document).ready(function($){
       /*var name = $('#nameInput').val();*/
       var text = $('#messageInput').val();
       /*myDataRef.push({name: llamo, text: text});*/
+      /*un = myDataRef.child(currentChat)
+      un.push({name: llamo, text: text});*/
       myDataRef.child(currentChat).push({name: llamo, text: text});
-      kidPath = myDataRef.child(currentChat).toString();
-      kidReference = new Firebase(kidPath)
+      /*kidPath = myDataRef.child(currentChat).toString();
+      kidReference = new Firebase(kidPath)*/
       $('#messageInput').val('');
-      alert(currentChat);
+     /* alert(myDataRef.child(currentChat))
+      alert(un)*/
     }
   });
 
-  /*myDataRef.child(currentChat).on('child_added', function(snapshot) {
+  myDataRef.child(currentChat).on('child_added', function(snapshot) {
     var message = snapshot.val();
       displayChatMessage(message.name, message.text);
-  });*/
+  });
 
   function displayChatMessage(name, text) {
     if(name == llamo){
