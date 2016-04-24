@@ -139,11 +139,13 @@ jQuery(document).ready(function($){
 
   function displayChatMessage(name, text) {
     if(name == llamo){
-      $('<div id = "my_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div class = "my_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div class = "line_break"><div/>').appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
     else{
-      $('<div id = "their_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div class = "their_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div class = "line_break"><div/>').appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
   };

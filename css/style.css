@@ -194,3 +194,113 @@ body{
   padding-top: 1em;
 }
 
+/*#my_msg{
+  text-align:right;
+}*/
+
+.my_msg {
+  position: relative;
+  padding: 10px 20px;
+  color: white;
+  background: #0B93F6;
+  border-radius: 25px;
+  float: right;
+  margin-bottom: 1%;
+}
+
+.their_msg {
+  position: relative;
+  padding: 10px 20px;
+  background: #E5E5EA;
+  border-radius: 25px;
+  color: black;
+  float: left;
+  margin-bottom: 1%;
+  margin-left:0.5%;
+}
+
+.their_msg:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  bottom: -2px;
+  left: -7px;
+  height: 20px;
+  border-left: 20px solid #E5E5EA;
+  border-bottom-right-radius: 16px 14px;
+  -webkit-transform: translate(0, -2px);
+}
+
+.their_msg:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  bottom: -2px;
+  left: 4px;
+  width: 26px;
+  height: 20px;
+  background: #2B7ACC;
+  border-bottom-right-radius: 10px;
+  -webkit-transform: translate(-30px, -2px);
+}
+
+.line_break {
+  clear: both;
+}
+
+#createChat{
+  position:relative;
+  margin-top:5%;
+  font-family: "Roboto", sans-serif;
+  font-size:2vw;
+  font-weight:300;
+  width:13%;
+  height: 15%;
+  border: white 2px solid;
+  color:white;
+  background-color:rgba(255, 255, 255, 0);
+  -webkit-transition: background .4s, border .5s, color .3s;
+  -moz-transition: background .4s, border .5s, color .3s;
+  transition: background .4s, border .5s, color .3s;
+  border-radius:4px;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+#createChat:hover{
+  background:white;
+  border: #FFFFFF solid 2px;
+  color:#2B7ACC;
+  cursor: hand;
+  cursor: pointer;
+}
+
+#existingChats{
+  position:relative;
+  margin-top:5%;
+  font-family: "Roboto", sans-serif;
+  font-size:2vw;
+  font-weight:300;
+  width:38%;
+  height: 15%;
+  border: white 2px solid;
+  color:white;
+  background-color:rgba(255, 255, 255, 0);
+  -webkit-transition: background .4s, border .5s, color .3s;
+  -moz-transition: background .4s, border .5s, color .3s;
+  transition: background .4s, border .5s, color .3s;
+  border-radius:4px;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+#existingChats:hover{
+  border: #FFFFFF solid 2px;
+  color:#2B7ACC;
+  cursor: hand;
+  cursor: pointer;
+}
