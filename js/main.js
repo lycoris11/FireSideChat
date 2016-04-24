@@ -48,9 +48,11 @@ jQuery(document).ready(function($){
 	$('#messageHolder').bind('scroll', function(){
 		if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
 			$(this).removeClass();
+      $(this).addClass('thumbBottom')
     }
     else if($(this).scrollTop() + $(this).innerHeight() < $(this)[0].scrollHeight && $(this).scrollTop() + $(this).innerHeight() > $(this).innerHeight()){
 			$(this).removeClass();
+      $(this).addClass('thumbMiddle')
     }
 	});
 
@@ -137,11 +139,11 @@ jQuery(document).ready(function($){
 
   function displayChatMessage(name, text) {
     if(name == llamo){
-      $('<div style="text-align: right;"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div id = "my_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
     else{
-      $('<div id = "memes"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div id = "their_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
   };
