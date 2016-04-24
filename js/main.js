@@ -65,7 +65,7 @@ jQuery(document).ready(function($){
   });
 
   $('#createChat').click(function(){
-    var isCreatable = true
+    var isCreatable = true;
     $("#existingChats > option").each(function() {
       if ($('#chatInput').val() == $(this).val()){
         isCreatable = false;
@@ -75,8 +75,8 @@ jQuery(document).ready(function($){
     if($('#chatInput').val().length >= 4 && isCreatable == true){
       $('<option/>').text($('#chatInput').val()).appendTo($('#existingChats'));
       rooms.push($('#chatInput').val());
-      swal("Success!", "You've opened a new chat!", "success");
-      var mostRecentChat = rooms[rooms.length - 1]
+      swal("Success!", "You've opened a new chat, select it in the dropdown menu to start talking!", "success");
+      var mostRecentChat = rooms[rooms.length - 1];
       /*myDataRef.push(mostRecentChat);*/
       /*rooms.push($('#chatInput').val());*/
     }else if (isCreatable == false){
@@ -87,39 +87,61 @@ jQuery(document).ready(function($){
   });
 
   $('#existingChats').change(function(){
+    $('#messages').html('');
     currentChat = $('#existingChats').find(":selected").text();
-    /*alert(currentChat)*/
+    
+    myDataRef.child(currentChat).on('child_added', function(snapshot) {
+      var message = snapshot.val();
+      displayChatMessage(message.name, message.text);
+    });
   });
 
   $('#messageInput').keypress(function (e) {
     if (e.keyCode == 13) {
-      currentChat = $('#existingChats').find(":selected").text();
-      /*var name = $('#nameInput').val();*/
-      var text = $('#messageInput').val();
-      /*myDataRef.push({name: llamo, text: text});*/
-      /*un = myDataRef.child(currentChat)
-      un.push({name: llamo, text: text});*/
-      myDataRef.child(currentChat).push({name: llamo, text: text});
-      /*kidPath = myDataRef.child(currentChat).toString();
-      kidReference = new Firebase(kidPath)*/
-      $('#messageInput').val('');
-     /* alert(myDataRef.child(currentChat))
-      alert(un)*/
+      if($('#existingChats').find(":selected").text() != "Select Chat Room"){
+        currentChat = $('#existingChats').find(":selected").text();
+        /*var name = $('#nameInput').val();*/
+        var text = $('#messageInput').val();
+        /*myDataRef.push({name: llamo, text: text});*/
+        /*un = myDataRef.child(currentChat)
+        un.push({name: llamo, text: text});*/
+        myDataRef.child(currentChat).push({name: llamo, text: text, identifier:currentChat});
+        /*kidPath = myDataRef.child(currentChat).toString();
+        kidReference = new Firebase(kidPath)*/
+        $('#messageInput').val('');
+        /*alert(myDataRef.child(currentChat))
+        alert(un)*/
+      }else{
+        sweetAlert("Hold on there!", "Please select the chat room you'd like to chat in.", "error");
+        $('#messageInput').val('');
+      }
     }
   });
 
-  myDataRef.child(currentChat).on('child_added', function(snapshot) {
-    var message = snapshot.val();
-      displayChatMessage(message.name, message.text);
+  myDataRef.on('child_added', function(snapshot) {
+    snapshot.forEach(function(childSnapshot){
+      var serverSideChatName = childSnapshot.child("identifier");
+      var chatName = serverSideChatName.val();
+      
+      var canAddChat = true
+      $("#existingChats > option").each(function() {
+        if($(this).val() == chatName)
+          canAddChat = false;
+      }); 
+
+      if(canAddChat == true){
+         $('<option/>').text(chatName).appendTo($('#existingChats'));
+      } 
+    });
   });
 
   function displayChatMessage(name, text) {
     if(name == llamo){
-      $('<div style="text-align: right;"><div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div style="text-align: right;"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
     else{
-      $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
+      $('<div id = "memes"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
       $('#messageHolder')[0].scrollTop = $('#messages')[0].scrollHeight;
     }
   };
