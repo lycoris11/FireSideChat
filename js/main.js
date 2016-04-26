@@ -12,19 +12,7 @@ jQuery(document).ready(function($){
 		window.location = "chat.html";
 	});
 
-	/*$('#messageHolder').scroll(function(){
-		if($('#messageHolder').scrollTop() + $('#messageHolder').height() == $('#messageHolder').height()) {
-       		alert("middle");
-   		}
-   		else if($('#messageHolder').scrollTop() == 0){
-   			alert("topkek");
-   		}
-	});*/
-
-  function memes(){
-    alert('memes');
-  }
-
+//main alert that show up when you first load into chat.html
   $(window).load(function() {
     swal({
       title: "Who are you?",
@@ -45,6 +33,7 @@ jQuery(document).ready(function($){
     });
   });
 
+//controls the animations for the scrollbar, makes it change when its at the top, the middle, and the bottom.
 	$('#messageHolder').bind('scroll', function(){
 		if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
 			$(this).removeClass();
@@ -65,7 +54,9 @@ jQuery(document).ready(function($){
    	}
     lastScrollTop = st;
   });
+//end of scrollbar animations
 
+//function that checks to make sure that you can create a new chat
   $('#createChat').click(function(){
     var isCreatable = true;
     $("#existingChats > option").each(function() {
@@ -74,6 +65,7 @@ jQuery(document).ready(function($){
       }
     });
 
+//logic that adds a chat to html or not depending on whether isCreatable = true
     if($('#chatInput').val().length >= 4 && isCreatable == true){
       $('<option/>').text($('#chatInput').val()).appendTo($('#existingChats'));
       rooms.push($('#chatInput').val());
@@ -88,6 +80,7 @@ jQuery(document).ready(function($){
     }
   });
 
+//function called when you change that chat room, and it displays all the previous messages in that chat room.
   $('#existingChats').change(function(){
     $('#messages').html('');
     currentChat = $('#existingChats').find(":selected").text();
@@ -98,21 +91,15 @@ jQuery(document).ready(function($){
     });
   });
 
+//when you press enter it sends a message, it writes the data into either the specific chat that you are in, or if the chat doesnt exist, it creates a new chat room and
+//adds your name and message into the server
   $('#messageInput').keypress(function (e) {
     if (e.keyCode == 13) {
       if($('#existingChats').find(":selected").text() != "Select Chat Room"){
         currentChat = $('#existingChats').find(":selected").text();
-        /*var name = $('#nameInput').val();*/
         var text = $('#messageInput').val();
-        /*myDataRef.push({name: llamo, text: text});*/
-        /*un = myDataRef.child(currentChat)
-        un.push({name: llamo, text: text});*/
         myDataRef.child(currentChat).push({name: llamo, text: text, identifier:currentChat});
-        /*kidPath = myDataRef.child(currentChat).toString();
-        kidReference = new Firebase(kidPath)*/
         $('#messageInput').val('');
-        /*alert(myDataRef.child(currentChat))
-        alert(un)*/
       }else{
         sweetAlert("Hold on there!", "Please select the chat room you'd like to chat in.", "error");
         $('#messageInput').val('');
@@ -120,6 +107,9 @@ jQuery(document).ready(function($){
     }
   });
 
+//this runs every time data is added to the server. it checks to see if any of the selected chat boxes match the identifier of a message
+//the identifier is basically the name of the chat room on the server and depending on whether another user has the chat or not  it will
+//add it to their client on startup of the program.
   myDataRef.on('child_added', function(snapshot) {
     snapshot.forEach(function(childSnapshot){
       var serverSideChatName = childSnapshot.child("identifier");
@@ -137,6 +127,8 @@ jQuery(document).ready(function($){
     });
   });
 
+// this function dynamically appends html div and em tags to another specified div tag. Within these tags is the data to be written and is sent to all users
+//at the same time.
   function displayChatMessage(name, text) {
     if(name == llamo){
       $('<div class = "my_msg"><div/>').text(text + " ").prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
@@ -151,6 +143,3 @@ jQuery(document).ready(function($){
   };
 
 });
-
-//http://stackoverflow.com/questions/12555258/set-webkit-scrollbar-thumb-visibility-in-jquery
-//http://stackoverflow.com/questions/8525221/programmatically-setting-the-name-of-a-variable
