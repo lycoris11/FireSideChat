@@ -8,7 +8,7 @@ Servers side handleing was done by Firebase. I do not own, and am not affiliated
 Data was stored & synced on Firebase's NoSQL cloud database. Data is stored as JSON, synced to all connected clients in realtime, and available even if my app goes offline.
 
 ##Running
-Just smash that mf index.html file and open it in the broswer of your choice.
+Just smash that mf index.html file and open it in the browser of your choice.
 
 ##Contributing
 Pull requests are welcomed.
