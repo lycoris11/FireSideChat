@@ -4,7 +4,7 @@ Messaging/Chatroom Web App Client
 ##Built On 
 jQuery, JS, HTML, and CSS were used to create this app.
 
-Servers side handleing was done by Firebase. I do not own, and am not affiliated with Firebase, and did not create it.
+Servers side handling was done by Firebase. I do not own, and am not affiliated with Firebase, and did not create it.
 Data was stored & synced on Firebase's NoSQL cloud database. Data is stored as JSON, synced to all connected clients in realtime, and available even if my app goes offline.
 
 ##Running
