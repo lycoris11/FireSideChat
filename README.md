@@ -1,5 +1,5 @@
 # FireSideChat
-Messaging/Chatroom Web App Client
+Messaging/Chatroom Web App Client. Yeah thats right I used firebase before it was cool. This project is now depricated.
 
 ## Built On 
 jQuery, JS, HTML, and CSS were used to create this app.
